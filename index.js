@@ -1,10 +1,10 @@
 const NOTION_TOKEN = process.env.NOTION_TOKEN;
-const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
+const DATA_SOURCE_ID = process.env.NOTION_DATA_SOURCE_ID;
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 async function getRandomLink() {
-  const response = await fetch(`https://api.notion.com/v1/databases/${NOTION_DATABASE_ID}/query`, {
+  const response = await fetch(`https://api.notion.com/v1/data_sources/${DATA_SOURCE_ID}/query`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${NOTION_TOKEN}`,
@@ -18,14 +18,12 @@ async function getRandomLink() {
 
   const data = await response.json();
   
-  // Debug: show what we got
   console.log('Notion response:', JSON.stringify(data, null, 2));
 
   if (!data.results || data.results.length === 0) {
     throw new Error('No items found in database');
   }
 
-  // Pick a random item
   const randomIndex = Math.floor(Math.random() * data.results.length);
   const item = data.results[randomIndex];
 
