@@ -12,18 +12,17 @@ async function getRandomLink() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      filter: {
-        property: 'Status',
-        select: { equals: 'To Check' }
-      },
       page_size: 100
     })
   });
 
   const data = await response.json();
   
+  // Debug: show what we got
+  console.log('Notion response:', JSON.stringify(data, null, 2));
+
   if (!data.results || data.results.length === 0) {
-    throw new Error('No items with status "To Check" found');
+    throw new Error('No items found in database');
   }
 
   // Pick a random item
@@ -63,4 +62,4 @@ async function main() {
   console.log('Message sent:', title);
 }
 
-main()
+main();
