@@ -2,7 +2,7 @@ name: Daily Reading Reminder
 
 on:
   schedule:
-    - cron: '0 14 * * *'
+    - cron: '0 14 * * 1-5'
   workflow_dispatch:
 
 jobs:
