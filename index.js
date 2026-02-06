@@ -12,7 +12,13 @@ async function getRandomLink() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      page_size: 100
+      page_size: 100,
+      filter: {
+        or: [
+          { property: 'Status', status: { equals: 'To Check' } },
+          { property: 'Status', status: { equals: 'Reading' } }
+        ]
+      }
     })
   });
 
