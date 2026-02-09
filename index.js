@@ -15,8 +15,8 @@ async function getRandomLink() {
       page_size: 100,
       filter: {
         or: [
-          { property: 'Status', status: { equals: 'To Check' } },
-          { property: 'Status', status: { equals: 'Reading' } }
+          { property: 'Status', select: { equals: 'To Check' } },
+          { property: 'Status', select: { equals: 'Reading' } }
         ]
       }
     })
@@ -67,3 +67,5 @@ async function main() {
 }
 
 main();
+
+export { getRandomLink };
