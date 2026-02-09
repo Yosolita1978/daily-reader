@@ -66,6 +66,9 @@ async function main() {
   console.log('Message sent:', title);
 }
 
-main();
+const isMainModule = import.meta.url === `file://${process.argv[1]}`;
+if (isMainModule) {
+  main();
+}
 
 export { getRandomLink };
